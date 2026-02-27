@@ -1,233 +1,104 @@
-# Untitled Pro — Integração Global
+# Untitled UI Pro — Integração Global
 
-Kit de integração da fonte **Untitled Pro** pronto para usar em qualquer projeto web: HTML puro, React, Next.js, Tailwind CSS ou SCSS.
+Configuração de Cursor Skill + MCP + Rules para usar o **Untitled UI Pro** como biblioteca de componentes em todos os projetos.
 
 ---
 
-## Estrutura
+## O que está configurado
 
 ```
-├── fonts/
-│   └── untitled-pro/          ← coloque os arquivos .woff2 / .woff aqui
-├── css/
-│   ├── untitled-pro.css       ← @font-face declarations
-│   └── typography.css         ← sistema tipográfico completo (variáveis + classes)
-├── scss/
-│   └── _untitled-pro.scss     ← partial SCSS com mixins e variáveis
-├── integrations/
-│   ├── next-font.tsx          ← next/font/local para Next.js (App Router)
-│   ├── react-font-loader.tsx  ← componente + hook para React (Vite / CRA)
-│   ├── tailwind.config.js     ← extensão do Tailwind com a fonte
-│   └── tailwind-globals.css   ← globals.css pronto com @font-face + Tailwind
-└── README.md
+.cursor/
+├── mcp.json                              ← Servidor MCP do Untitled UI
+├── skills/
+│   └── untitledui-pro/
+│       └── SKILL.md                      ← Skill completa com fluxo de trabalho
+└── rules/
+    ├── untitledui-always.mdc             ← Regra global (sempre ativa)
+    ├── ui-components.mdc                 ← Padrões para componentes .tsx
+    └── project-init.mdc                  ← Regras de inicialização de projetos
 ```
 
 ---
 
-## 1. Adicionar os arquivos da fonte
+## Como funciona
 
-Copie os seus arquivos `.woff2` (e opcionalmente `.woff`) para `fonts/untitled-pro/` seguindo este padrão de nomes:
+### MCP Server
 
-| Arquivo                             | Weight | Style  |
-|--------------------------------------|--------|--------|
-| `UntitledPro-Light.woff2`           | 300    | normal |
-| `UntitledPro-LightItalic.woff2`    | 300    | italic |
-| `UntitledPro-Regular.woff2`        | 400    | normal |
-| `UntitledPro-RegularItalic.woff2`  | 400    | italic |
-| `UntitledPro-Medium.woff2`         | 500    | normal |
-| `UntitledPro-MediumItalic.woff2`   | 500    | italic |
-| `UntitledPro-Bold.woff2`           | 700    | normal |
-| `UntitledPro-BoldItalic.woff2`     | 700    | italic |
-| `UntitledPro-Black.woff2`          | 900    | normal |
-| `UntitledPro-BlackItalic.woff2`    | 900    | italic |
+O servidor MCP `untitledui` conecta o Cursor diretamente à biblioteca de componentes do Untitled UI. O agente pode:
 
-> Se os nomes dos seus arquivos forem diferentes, ajuste nos respectivos CSS/SCSS.
+- **Buscar componentes** por nome ou descrição
+- **Listar categorias** de componentes disponíveis
+- **Baixar componentes completos** com todas as dependências
+- **Acessar templates** de páginas prontas (dashboards, settings, auth, etc.)
 
----
+### Skill
 
-## 2. Uso — HTML puro
+A skill instrui o agente a **sempre** consultar o Untitled UI antes de criar qualquer componente visual. Inclui:
 
-```html
-<link rel="stylesheet" href="css/typography.css">
-```
+- Fluxo de trabalho obrigatório (pesquisar → buscar → adaptar)
+- Catálogo dos componentes Pro disponíveis (46 modais, 12 tabelas, 60+ dashboards, etc.)
+- Padrões de código (TypeScript, Tailwind, React Aria)
+- Checklist de qualidade
 
-Isso carrega automaticamente as `@font-face` e aplica a Untitled Pro globalmente ao `body`. Classes utilitárias disponíveis:
+### Rules
 
-```html
-<h1 class="display-large">Título principal</h1>
-<p class="body-large">Texto de corpo grande</p>
-<span class="caption">Legenda</span>
-<span class="overline">OVERLINE</span>
-
-<!-- Pesos -->
-<p class="font-light">Light 300</p>
-<p class="font-medium">Medium 500</p>
-<p class="font-bold">Bold 700</p>
-<p class="font-black">Black 900</p>
-
-<!-- Tamanhos -->
-<p class="text-sm">Pequeno</p>
-<p class="text-2xl">Grande</p>
-<p class="text-5xl">Muito grande</p>
-```
+| Regra | Escopo | Função |
+|---|---|---|
+| `untitledui-always.mdc` | Global | Garante que toda UI use Untitled UI, proíbe libs concorrentes |
+| `ui-components.mdc` | `*.tsx` | Padrões de código e estrutura para componentes |
+| `project-init.mdc` | `package.json` | Garante inicialização via CLI do Untitled UI |
 
 ---
 
-## 3. Uso — Next.js (App Router)
+## Setup rápido
 
-### Passo 1: Copiar fontes para `public/fonts/untitled-pro/`
+### 1. Autenticar (Pro)
 
-### Passo 2: Criar o módulo de fonte
-
-Copie `integrations/next-font.tsx` para `lib/fonts.ts` (ajuste os caminhos internos).
-
-### Passo 3: Aplicar no layout raiz
-
-```tsx
-// app/layout.tsx
-import { untitledPro } from '@/lib/fonts';
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="pt-BR" className={untitledPro.variable}>
-      <body className="font-sans">{children}</body>
-    </html>
-  );
-}
+```bash
+npx untitledui@latest login
 ```
 
-### Passo 4: Configurar Tailwind (se usar)
+### 2. Iniciar um projeto novo
 
-```js
-// tailwind.config.js
-const defaultTheme = require('tailwindcss/defaultTheme');
+```bash
+# Next.js
+npx untitledui@latest init --nextjs
 
-module.exports = {
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['var(--font-untitled-pro)', ...defaultTheme.fontFamily.sans],
-      },
-    },
-  },
-};
+# Vite
+npx untitledui@latest init --vite
 ```
+
+### 3. Adicionar componentes
+
+```bash
+npx untitledui@latest add button modal sidebar table
+```
+
+### 4. Verificar MCP
+
+O `.cursor/mcp.json` já está configurado. O Cursor vai carregar o servidor automaticamente.
 
 ---
 
-## 4. Uso — React (Vite / CRA)
+## Uso com o agente
 
-### Opção A: Importar CSS
+Depois de configurado, basta pedir ao agente em linguagem natural:
 
-```tsx
-// main.tsx
-import './css/typography.css';
-```
+- *"Cria uma página de dashboard com métricas e tabela"*
+- *"Adiciona um modal de confirmação de exclusão"*
+- *"Monta uma sidebar com navegação e sub-menus"*
+- *"Cria uma landing page com pricing e FAQ"*
 
-### Opção B: Usar o componente provider
-
-```tsx
-import { UntitledProProvider } from './integrations/react-font-loader';
-
-function App() {
-  return (
-    <UntitledProProvider>
-      <h1>Todo o conteúdo usa Untitled Pro</h1>
-    </UntitledProProvider>
-  );
-}
-```
-
-### Opção C: Hook para estilos inline
-
-```tsx
-import { useUntitledPro } from './integrations/react-font-loader';
-
-function Component() {
-  const boldStyle = useUntitledPro(700);
-  return <p style={boldStyle}>Texto em Bold</p>;
-}
-```
+O agente vai automaticamente consultar o MCP, buscar os componentes do Untitled UI e montar a interface.
 
 ---
 
-## 5. Uso — Tailwind CSS
+## Stack
 
-### Passo 1: Substituir `globals.css`
-
-Use `integrations/tailwind-globals.css` como base (ou copie os `@font-face` para o seu CSS existente).
-
-### Passo 2: Estender `tailwind.config.js`
-
-Copie as seções de `integrations/tailwind.config.js` para o seu config:
-
-```js
-const untitledConfig = require('./integrations/tailwind.config.js');
-
-module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
-  theme: {
-    extend: {
-      ...untitledConfig.theme.extend,
-    },
-  },
-};
-```
-
-Depois use normalmente:
-
-```html
-<h1 class="font-sans font-bold text-5xl tracking-tight">Título</h1>
-<p class="font-sans font-normal text-base leading-relaxed">Corpo do texto</p>
-```
-
----
-
-## 6. Uso — SCSS
-
-```scss
-@import 'scss/untitled-pro';
-
-.hero-title {
-  @include heading(map-get($font-sizes, '5xl'));
-}
-
-.body-text {
-  @include body;
-}
-
-.label {
-  @include caption;
-}
-
-.section-label {
-  @include overline;
-}
-
-// Uso direto do mixin
-.custom-element {
-  @include untitled-pro(500, 1.25rem, 1.4);
-}
-```
-
----
-
-## Variáveis CSS disponíveis
-
-| Variável              | Valor padrão          |
-|-----------------------|-----------------------|
-| `--font-primary`      | Untitled Pro + stack  |
-| `--font-light`        | 300                   |
-| `--font-regular`      | 400                   |
-| `--font-medium`       | 500                   |
-| `--font-bold`         | 700                   |
-| `--font-black`        | 900                   |
-| `--text-xs` … `--text-7xl` | 0.75rem … 4.5rem |
-| `--leading-none` … `--leading-loose` | 1 … 2 |
-| `--tracking-tighter` … `--tracking-widest` | -0.05em … 0.1em |
-
----
-
-## Licença
-
-A fonte **Untitled Pro** é propriedade dos seus criadores. Certifique-se de ter a licença adequada antes de usar em produção.
+| Tecnologia | Versão |
+|---|---|
+| React | 18+ |
+| TypeScript | 5.8+ |
+| Tailwind CSS | 4.1+ |
+| React Aria | latest |
+| @untitledui/icons | latest |

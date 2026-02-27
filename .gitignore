@@ -1,9 +1,11 @@
-# Font files (binary — add your own locally)
-fonts/untitled-pro/*.woff
-fonts/untitled-pro/*.woff2
-fonts/untitled-pro/*.ttf
-fonts/untitled-pro/*.otf
-fonts/untitled-pro/*.eot
+# Dependencies
+node_modules/
+
+# Build
+.next/
+out/
+dist/
+build/
 
 # OS
 .DS_Store
@@ -15,5 +17,7 @@ Thumbs.db
 *.swp
 *.swo
 
-# Dependencies
-node_modules/
+# Environment
+.env
+.env.local
+.env.*.local
