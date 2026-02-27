@@ -1,0 +1,62 @@
+---
+description: Regras para criação e modificação de componentes de UI
+globs: ["**/*.tsx", "**/*.jsx"]
+---
+
+# Componentes de UI — Padrões
+
+## Busca antes de criação
+
+Ao receber um pedido para criar um componente visual (botão, modal, tabela, sidebar, formulário, card, etc.):
+
+1. Pesquisar no MCP `untitledui` com `search_components`
+2. Se encontrar, buscar com `get_component_with_deps`
+3. Adaptar o componente ao contexto do projeto
+4. Só criar do zero se o MCP não tiver nada relevante
+
+## Estrutura de arquivos
+
+```
+src/
+├── components/
+│   └── ui/          ← componentes do Untitled UI (instalados via CLI)
+│   └── features/    ← componentes específicos do projeto (compostos)
+├── app/ ou pages/   ← rotas
+└── lib/             ← utilitários
+```
+
+## Convenções de código
+
+- Componentes sempre em TypeScript (.tsx)
+- Props tipadas com `interface`, nunca `type` para props de componente
+- Exports nomeados (não default)
+- Um componente por arquivo
+- Nome do arquivo = nome do componente em kebab-case
+- Estilização exclusivamente com Tailwind CSS classes
+- Responsividade obrigatória (mobile-first: sm → md → lg → xl)
+
+## Composição
+
+Ao criar features, compor usando componentes do Untitled UI:
+
+```tsx
+import { Button } from '@/components/ui/button';
+import { Modal } from '@/components/ui/modal';
+import { Input } from '@/components/ui/input';
+
+export function CreateUserModal({ onClose }: { onClose: () => void }) {
+  return (
+    <Modal onClose={onClose}>
+      <Modal.Header>Criar usuário</Modal.Header>
+      <Modal.Body>
+        <Input label="Nome" />
+        <Input label="Email" type="email" />
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onClose}>Cancelar</Button>
+        <Button variant="primary">Criar</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+```

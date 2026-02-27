@@ -1,0 +1,49 @@
+---
+description: Regras para inicialização de novos projetos com interface
+globs: ["**/package.json"]
+---
+
+# Inicialização de Projetos
+
+## Projetos com interface
+
+Ao criar ou inicializar um projeto que terá interface de usuário:
+
+```bash
+# Next.js (padrão)
+npx untitledui@latest init --nextjs
+
+# Vite (quando Next.js não for necessário)
+npx untitledui@latest init --vite
+```
+
+Nunca usar `create-next-app`, `create-vite` ou `create-react-app` diretamente. O starter kit do Untitled UI já inclui:
+
+- Tailwind CSS v4.1 configurado com design tokens
+- Theme provider com suporte a dark mode
+- Estrutura de diretórios correta
+- Configuração de TypeScript
+- Ícones (@untitledui/icons)
+
+## Autenticação Pro
+
+Para componentes Pro (modais, sidebars, tabelas, dashboards):
+
+```bash
+npx untitledui@latest login
+```
+
+## Verificação
+
+Após inicializar, confirmar que o MCP está configurado em `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "untitledui": {
+      "command": "npx",
+      "args": ["-y", "untitledui-mcp"]
+    }
+  }
+}
+```

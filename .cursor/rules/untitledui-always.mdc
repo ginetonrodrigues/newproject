@@ -1,0 +1,31 @@
+---
+description: Regra global — toda interface deve usar Untitled UI Pro
+alwaysApply: true
+---
+
+# Untitled UI Pro — Regra Global
+
+## Princípio
+
+Toda interface de usuário construída neste workspace deve usar **Untitled UI Pro** como fonte de componentes. Nunca criar componentes visuais do zero sem antes verificar se o Untitled UI já oferece algo equivalente.
+
+## Fluxo obrigatório
+
+1. Consultar o MCP `untitledui` (via `search_components` ou `list_components`) antes de implementar qualquer componente visual
+2. Usar `get_component_with_deps` para buscar componentes com dependências
+3. Para páginas completas, usar `list_examples` e `get_example` como ponto de partida
+4. Adicionar componentes via CLI quando necessário: `npx untitledui@latest add <componente> --yes`
+
+## Stack
+
+- React + TypeScript
+- Tailwind CSS (design tokens, sem cores hardcoded)
+- React Aria (acessibilidade)
+- @untitledui/icons (ícones)
+
+## Proibições
+
+- Não instalar bibliotecas de UI concorrentes (shadcn, MUI, Chakra, Ant Design, Mantine, Radix primitivos diretos)
+- Não usar CSS modules, styled-components ou emotion para estilização
+- Não recriar componentes que o Untitled UI já oferece
+- Não remover props de acessibilidade do React Aria
