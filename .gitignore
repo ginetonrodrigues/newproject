@@ -1,0 +1,19 @@
+# Font files (binary — add your own locally)
+fonts/untitled-pro/*.woff
+fonts/untitled-pro/*.woff2
+fonts/untitled-pro/*.ttf
+fonts/untitled-pro/*.otf
+fonts/untitled-pro/*.eot
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependencies
+node_modules/

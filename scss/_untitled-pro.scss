@@ -1,0 +1,91 @@
+// ==========================================================================
+// Untitled Pro — SCSS Integration
+// ==========================================================================
+
+// ---------- Configuração ----------
+$untitled-pro-font-path: '../fonts/untitled-pro' !default;
+
+$untitled-pro-weights: (
+  'Light':   300,
+  'Regular': 400,
+  'Medium':  500,
+  'Bold':    700,
+  'Black':   900,
+) !default;
+
+$untitled-pro-styles: ('normal', 'italic') !default;
+
+// ---------- Mixin: gerar @font-face ----------
+@mixin untitled-pro-face($weight-name, $weight-value, $style: normal) {
+  $suffix: if($style == italic, '#{$weight-name}Italic', $weight-name);
+
+  @font-face {
+    font-family: 'Untitled Pro';
+    src: url('#{$untitled-pro-font-path}/UntitledPro-#{$suffix}.woff2') format('woff2'),
+         url('#{$untitled-pro-font-path}/UntitledPro-#{$suffix}.woff') format('woff');
+    font-weight: $weight-value;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+
+// ---------- Gerar todos os @font-face ----------
+@each $name, $value in $untitled-pro-weights {
+  @each $style in $untitled-pro-styles {
+    @include untitled-pro-face($name, $value, $style);
+  }
+}
+
+// ---------- Variáveis ----------
+$font-primary: 'Untitled Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+$font-weight-light:   300;
+$font-weight-regular: 400;
+$font-weight-medium:  500;
+$font-weight-bold:    700;
+$font-weight-black:   900;
+
+// Escala tipográfica
+$font-sizes: (
+  'xs':   0.75rem,
+  'sm':   0.875rem,
+  'base': 1rem,
+  'lg':   1.125rem,
+  'xl':   1.25rem,
+  '2xl':  1.5rem,
+  '3xl':  1.875rem,
+  '4xl':  2.25rem,
+  '5xl':  3rem,
+  '6xl':  3.75rem,
+  '7xl':  4.5rem,
+);
+
+// ---------- Mixin: aplicar Untitled Pro ----------
+@mixin untitled-pro($weight: 400, $size: null, $line-height: null) {
+  font-family: $font-primary;
+  font-weight: $weight;
+  @if $size   { font-size: $size; }
+  @if $line-height { line-height: $line-height; }
+}
+
+// ---------- Mixins de conveniência ----------
+@mixin heading($size, $weight: $font-weight-bold) {
+  @include untitled-pro($weight, $size, 1.15);
+  letter-spacing: -0.025em;
+}
+
+@mixin body($size: map-get($font-sizes, 'base'), $weight: $font-weight-regular) {
+  @include untitled-pro($weight, $size, 1.5);
+}
+
+@mixin caption {
+  @include untitled-pro($font-weight-medium, map-get($font-sizes, 'xs'), 1.5);
+  letter-spacing: 0.025em;
+}
+
+@mixin overline {
+  @include untitled-pro($font-weight-bold, map-get($font-sizes, 'xs'), 1.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

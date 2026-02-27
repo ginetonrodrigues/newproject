@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Untitled Pro — @font-face declarations
+   ==========================================================================
+   Coloque os arquivos .woff2 (e opcionalmente .woff) na pasta ../fonts/untitled-pro/
+   Os nomes esperados seguem o padrão: UntitledPro-<Weight>.woff2
+   ========================================================================== */
+
+/* Light — 300 */
+@font-face {
+  font-family: 'Untitled Pro';
+  src: url('../fonts/untitled-pro/UntitledPro-Light.woff2') format('woff2'),
+       url('../fonts/untitled-pro/UntitledPro-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Pro';
+  src: url('../fonts/untitled-pro/UntitledPro-LightItalic.woff2') format('woff2'),
+       url('../fonts/untitled-pro/UntitledPro-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Regular — 400 */
+@font-face {
+  font-family: 'Untitled Pro';
+  src: url('../fonts/untitled-pro/UntitledPro-Regular.woff2') format('woff2'),
+       url('../fonts/untitled-pro/UntitledPro-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Pro';
+  src: url('../fonts/untitled-pro/UntitledPro-RegularItalic.woff2') format('woff2'),
+       url('../fonts/untitled-pro/UntitledPro-RegularItalic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Medium — 500 */
+@font-face {
+  font-family: 'Untitled Pro';
+  src: url('../fonts/untitled-pro/UntitledPro-Medium.woff2') format('woff2'),
+       url('../fonts/untitled-pro/UntitledPro-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Pro';
+  src: url('../fonts/untitled-pro/UntitledPro-MediumItalic.woff2') format('woff2'),
+       url('../fonts/untitled-pro/UntitledPro-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Bold — 700 */
+@font-face {
+  font-family: 'Untitled Pro';
+  src: url('../fonts/untitled-pro/UntitledPro-Bold.woff2') format('woff2'),
+       url('../fonts/untitled-pro/UntitledPro-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Pro';
+  src: url('../fonts/untitled-pro/UntitledPro-BoldItalic.woff2') format('woff2'),
+       url('../fonts/untitled-pro/UntitledPro-BoldItalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Black — 900 */
+@font-face {
+  font-family: 'Untitled Pro';
+  src: url('../fonts/untitled-pro/UntitledPro-Black.woff2') format('woff2'),
+       url('../fonts/untitled-pro/UntitledPro-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Pro';
+  src: url('../fonts/untitled-pro/UntitledPro-BlackItalic.woff2') format('woff2'),
+       url('../fonts/untitled-pro/UntitledPro-BlackItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
